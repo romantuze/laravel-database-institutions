@@ -1,0 +1,38 @@
+.main {
+    padding: 30px 0 30px 0;
+}
+
+.form-group {
+    margin:  0 0 20px 0;
+}
+.form-group label {
+    margin:  0 0 5px 0;
+}
+
+.form-inline .form-group {
+   display: inline-block;
+   vertical-align: top;
+   margin:  0 0 10px 0;
+}
+
+.form-group-filtr label {
+    margin:  6px 5px 0 0;
+}
+
+
+
+.form-select-filtr {
+    width:  auto;
+    display: inline-block;
+     vertical-align: top;
+}
+
+.form-select-input {
+     width:  auto;
+    display: inline-block;
+     vertical-align: top;
+}
+
+.table-buttons .btn {
+    margin:  0 0 5px 0;
+}
