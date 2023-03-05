@@ -111,16 +111,24 @@
                   <small>нет</small>
                 @endif  
             </td>
-            <td> </td> 
+            <td> 
+@if (isset($contract->institution->user->name))  
+  {{$contract->institution->user->name}}
+@endif   
+            </td> 
              <td>  
                <small>{{date('d.m.Y h:i', strtotime($contract->created_at))}}</small><br>
-               <small>{{$contract->user->name}}</small>
+               <small>
+                @if (isset($contract->user->name))
+                {{$contract->user->name}}
+                @endif  
+              </small>
              
             </td>            
             <td>
                <div class="table-buttons">
-                <a href="{{route('contract_show', [$contract->id])}}" class="btn btn-success btn-sm">просмотр</a><br>
-                <a href="{{route('contract_edit', [$contract->id])}}" class="btn btn-primary btn-sm">изменить</a><br>
+                <!--<a href="{{route('contract_show', [$contract->id])}}" class="btn btn-success btn-sm">просмотр</a><br>-->
+                <a href="{{route('contract_edit', [$contract->id])}}" class="btn btn-primary btn-sm">открыть</a><br>
                 @if ($is_admin)<a href="{{route('contract_delete', [$contract->id])}}" class="btn btn-danger btn-sm">удалить</a> @endif  
               </div>
             </td>

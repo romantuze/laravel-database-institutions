@@ -177,7 +177,32 @@ class ContractController extends Controller
      */
     public function create() {
         if (Auth::check()) {
-        $institutions = Institution::all();
+
+
+
+        $is_admin = false;
+        $is_operator = false;
+        $is_coordinator = false;
+        $current_user = Auth::user();
+
+        if ($current_user->is_admin==true) {
+            $is_admin = true;
+        }
+        if ($current_user->is_operator==true) {
+            $is_operator = true;
+        }
+        if ($current_user->is_coordinator==true) {
+            $is_coordinator = true;
+        }   
+
+
+        // во вкладке учреждение было только одно это учреждение где работает оператор
+        if ($is_operator) {
+            $institutions = Institution::where('user_id',$current_user->id)->get();
+        } else {
+            $institutions = Institution::all();
+        }
+        
         $type_contracts = Contract_type::all();
         $bases = Basis::all();
         $contractors = Contractor::all();

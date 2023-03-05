@@ -90,11 +90,16 @@
      
              <td>  
                <small>{{$contract->created_at}}</small><br>
-               <small>{{$contract->user->name}}</small>               
+               <small>
+                 @if (isset($contract->user->name))
+                {{$contract->user->name}}
+                @endif  
+                </small>               
             </td>            
             <td>
                <div>
-                <a href="{{route('contract_show', [$contract->id])}}" class="btn btn-success btn-sm">просмотр</a>               
+                 <!--<a href="{{route('contract_show', [$contract->id])}}" class="btn btn-success btn-sm">просмотр</a><br>-->
+                <a href="{{route('contract_edit', [$contract->id])}}" class="btn btn-primary btn-sm">открыть</a><br>              
               </div>
             </td>
         </tr>   

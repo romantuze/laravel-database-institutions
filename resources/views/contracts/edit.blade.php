@@ -238,11 +238,6 @@ required
 >   
 </div>
 
-<div class="form-group">
-<label for="responsible_executor">Ответственнный исполнитель</label>
-<p><strong>{{$contract->institution->user->name}}</strong></p> 
-</div>
-
 
 
 
@@ -278,7 +273,7 @@ required
 <td>{{$remark->name}}</td>
 </tr>
 <tr>
-<td colspan="2">{{$remark->message}}</td>
+<td colspan="2">Комментарий: {{$remark->message}}</td>
 </tr>
 @endforeach
 <tr>
@@ -303,13 +298,29 @@ required
 
 <div class="form-group">
 <label for="institution">Автор</label>
-<p><strong>{{$contract->user->name}}</strong></p>
+<p><strong>
+@if (isset($contract->user->name))
+{{$contract->user->name}}
+@endif 
+</strong></p>
 </div>
 
 <div class="form-group">
 <label for="">Создан</label>   
 <p><strong>{{date('d.m.Y h:i', strtotime($contract->created_at))}}</strong></p>
 </div>
+
+<div class="form-group">
+<label for="responsible_executor">Ответственнный исполнитель</label>
+<p><strong>
+@if (isset($contract->institution->user->name))  
+  {{$contract->institution->user->name}}
+@endif   
+</strong></p> 
+</div>
+
+
+
 
 
 <div class="form-group">
@@ -355,6 +366,10 @@ required
 @if ($can_approve)
 <a href="{{route('contract_approve', [$contract->id])}}" class="btn btn-success">согласовать</a>
 @endif
+
+
+
+<a href="{{route('contract_doc', [$contract->id])}}" class="btn btn-success">скачать договор</a>
 
 
 
